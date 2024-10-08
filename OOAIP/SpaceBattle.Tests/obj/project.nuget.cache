@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8FBDSeit6jUHd50lv4TaqphpqKsGGsNH+TIJXdpAVj54e9LJmp/FHLOw9rIQDTgDm7HusC7gwPuzRYQXZY/CBA==",
+  "dgSpecHash": "rvJOB8DL2M97Dz2Wpqym2XFqL8WQ1CbfuMy7oPyE0Br1gd7MS9i4tjcFRv2F2q7okFlHFBkE8fixJw4v7qmNMg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Zver\\Desktop\\C#\\Game-spaceships\\SpaceBattle.Tests\\SpaceBattle.Tests.csproj",
+  "projectFilePath": "C:\\Users\\Zver\\Desktop\\C#\\Game-spaceships\\OOAIP\\SpaceBattle.Tests\\SpaceBattle.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Zver\\.nuget\\packages\\coverlet.collector\\3.2.0\\coverlet.collector.3.2.0.nupkg.sha512",
     "C:\\Users\\Zver\\.nuget\\packages\\microsoft.codecoverage\\17.6.0\\microsoft.codecoverage.17.6.0.nupkg.sha512",
