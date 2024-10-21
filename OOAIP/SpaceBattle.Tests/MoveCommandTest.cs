@@ -1,6 +1,6 @@
 namespace SpaceBattle.Tests;
 
-public class UnitTest1
+public class MoveCommandTest
 {
     [Fact]
     public void Test1()
