@@ -4,8 +4,8 @@ namespace SpaceBattle.Lib;
 
 public interface IMoving
 {
-    Vector2 Position { get;set; }
-    Vector2 Velocity { get; }
+    public Vector Position { get;set; }
+    public Vector Velocity { get; }
 }
 
 public interface ICommand

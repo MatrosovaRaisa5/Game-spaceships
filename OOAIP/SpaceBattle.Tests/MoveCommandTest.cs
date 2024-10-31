@@ -9,13 +9,13 @@ namespace SpaceBattle.Lib.Tests
         public void MoveCommandOrdinaryTest()
         {
             var moving = new Mock<IMoving>();
-            moving.SetupGet(m => m.Position).Returns(new Vector2(12, 5));
-            moving.SetupGet(m => m.Velocity).Returns(new Vector2(-7, 3));
+            moving.SetupGet(m => m.Position).Returns(new Vector(12, 5));
+            moving.SetupGet(m => m.Velocity).Returns(new Vector(-7, 3));
 
             var cmd = new MoveCommand(moving.Object);
             cmd.Execute();
 
-            moving.VerifySet(m => m.Position = new Vector2(5, 8));
+            moving.VerifySet(m => m.Position = new Vector(5, 8));
         }
 
         [Fact]
@@ -33,7 +33,7 @@ namespace SpaceBattle.Lib.Tests
         public void MoveCommand_VelocityNotReadable()
         {
             var moving = new Mock<IMoving>();
-            moving.SetupGet(m => m.Position).Returns(new Vector2(12, 5));
+            moving.SetupGet(m => m.Position).Returns(new Vector(12, 5));
             moving.SetupGet(m => m.Velocity).Throws<Exception>();
 
             var cmd = new MoveCommand(moving.Object);
@@ -45,8 +45,8 @@ namespace SpaceBattle.Lib.Tests
         public void MoveCommand_PositionNotSettable()
         {
             var moving = new Mock<IMoving>();
-            moving.SetupGet(m => m.Position).Returns(new Vector2(12, 5));
-            moving.SetupGet(m => m.Velocity).Returns(new Vector2(-7, 3));
+            moving.SetupGet(m => m.Position).Returns(new Vector(12, 5));
+            moving.SetupGet(m => m.Velocity).Returns(new Vector(-7, 3));
             moving.SetupSet(m => m.Position = It.IsAny<Vector2>()).Throws<Exception>();
 
             var cmd = new MoveCommand(moving.Object);
