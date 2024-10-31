@@ -1,22 +1,57 @@
-﻿namespace SpaceBattle.Lib.Tests;
-
-using System.Numerics;
+﻿using System.Numerics;
 using Moq;
 
-public class MoveCommandTest
+namespace SpaceBattle.Lib.Tests
 {
-    [Fact]
-    public void MoveCommandPositive()
+    public class MoveCommandTest
     {
+        [Fact]
+        public void MoveCommandOrdinaryTest()
+        {
+            var moving = new Mock<IMoving>();
+            moving.SetupGet(m => m.Position).Returns(new Vector2(12, 5));
+            moving.SetupGet(m => m.Velocity).Returns(new Vector2(-7, 3));
 
-        var moving = new Mock<IMoving>();
-        moving.SetupGet(m => m.Position).Returns(new Vector2(12, 5));
-        moving.SetupGet(m => m.Velocity).Returns(new Vector2(-3, 3));
-        var mc = new MoveCommand(moving.Object);
+            var cmd = new MoveCommand(moving.Object);
+            cmd.Execute();
 
-        mc.Execute();
+            moving.VerifySet(m => m.Position = new Vector2(5, 8));
+        }
 
+        [Fact]
+        public void MoveCommand_PositionNotReadable()
+        {
+            var moving = new Mock<IMoving>();
+            moving.SetupGet(m => m.Position).Throws<Exception>();
 
-        moving.VerifySet(m => m.Position = new Vector2(9, 8));
+            var cmd = new MoveCommand(moving.Object);
+
+            Assert.Throws<Exception>(() => cmd.Execute());
+        }
+
+        [Fact]
+        public void MoveCommand_VelocityNotReadable()
+        {
+            var moving = new Mock<IMoving>();
+            moving.SetupGet(m => m.Position).Returns(new Vector2(12, 5));
+            moving.SetupGet(m => m.Velocity).Throws<Exception>();
+
+            var cmd = new MoveCommand(moving.Object);
+
+            Assert.Throws<Exception>(() => cmd.Execute());
+        }
+
+        [Fact]
+        public void MoveCommand_PositionNotSettable()
+        {
+            var moving = new Mock<IMoving>();
+            moving.SetupGet(m => m.Position).Returns(new Vector2(12, 5));
+            moving.SetupGet(m => m.Velocity).Returns(new Vector2(-7, 3));
+            moving.SetupSet(m => m.Position = It.IsAny<Vector2>()).Throws<Exception>();
+
+            var cmd = new MoveCommand(moving.Object);
+
+            Assert.Throws<Exception>(() => cmd.Execute());
+        }
     }
 }
